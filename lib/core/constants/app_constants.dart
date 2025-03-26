@@ -1,7 +1,7 @@
 class AppConstants {
   // API endpoints
   static const String baseUrl = "https://api.routiner.app/v1";
-  static const String authEndpoint = "/auth";
+  static const String authEndpoint = "/login";
   static const String habitsEndpoint = "/habits";
   static const String challengesEndpoint = "/challenges";
   static const String usersEndpoint = "/users";

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:routiner/core/theme/app_colors.dart';
 import 'package:routiner/core/theme/app_text_styles.dart';
+import 'package:routiner/core/utils/preferences_helper.dart';
+import 'package:routiner/presentation/pages/login/login_screen.dart';
 
 import '../../../core/theme/app_dimensions.dart';
-import '../auth/auth.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -179,9 +180,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _completeOnboarding() async {
-    // await PreferencesHelper.setFirstLaunchComplete();
+    await PreferencesHelper.setFirstLaunchComplete();
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const AuthScreen()),
+      MaterialPageRoute(builder: (context) => const LoginScreen()),
     );
   }
 }

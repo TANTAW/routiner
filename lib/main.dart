@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:routiner/core/constants/app_strings.dart';
 import 'package:routiner/core/theme/app_theme.dart';
-import 'package:routiner/presentation/pages/auth/auth.dart';
+import 'package:routiner/core/utils/preferences_helper.dart';
 import 'package:routiner/presentation/pages/home/home_screen.dart';
+import 'package:routiner/presentation/pages/login/login_screen.dart';
 import 'package:routiner/presentation/pages/onboarding/onboarding_screen.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // Keep splash screen visible while initializing
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // Initialize services, check auth status
-  // final bool isLoggedIn = await checkAuthStatus();
+  final bool isFirstLaunch = await PreferencesHelper.isFirstLaunch();
+  final bool isLoggedIn = await PreferencesHelper.isLoggedIn();
 
   // Remove splash screen
   FlutterNativeSplash.remove();
-  runApp(const MyApp(isFirstLaunch: true, isLoggedIn: false,));
+  runApp(MyApp(isFirstLaunch: isFirstLaunch, isLoggedIn: isLoggedIn,));
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appName,
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.system,
-      home: const OnboardingScreen(),
+      home: _getStartScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
     if (isFirstLaunch) {
       return const OnboardingScreen();
     } else if (!isLoggedIn) {
-      return const AuthScreen();
+      return const LoginScreen();
     } else {
       return const HomeScreen();
     }
