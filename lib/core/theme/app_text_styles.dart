@@ -70,4 +70,12 @@ class AppTextStyles {
     fontWeight: FontWeight.normal,
     color: AppColors.textTertiary,
   );
+
+  static const TextStyle labelSmall = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.2,
+  );
+
 }
