@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:routiner/core/widgets/labeled_text_field.dart';
 import 'package:routiner/core/widgets/primary_button.dart';
 import 'package:routiner/core/widgets/text_action_button.dart';
@@ -55,61 +55,43 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LabeledTextField(
-                label: 'E-MAIL',
-                controller: _emailController,
-                showClearButton: _emailController.text.isNotEmpty,
-                onClear: _clearEmail,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 24),
-              LabeledTextField(
-                label: 'PASSWORD',
-                hintText: 'Enter your password',
-                obscureText: true,
-                controller: _passwordController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextActionButton(
-                text: 'I forgot my password',
-                onPressed: _navigateToForgotPassword,
-              ),
-              const Spacer(),
-              Center(
-                child: TextActionButton(
-                  text: "Don't have account? Let's create!",
-                  onPressed: _navigateToSignup,
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                EmailField(
+                  controller: _emailController,
+                  onClear: _clearEmail
                 ),
-              ),
-              const SizedBox(height: 16),
-              PrimaryButton(
-                text: 'Next',
-                onPressed: _handleLogin,
-                isLoading: _isLoading,
-              ),
-            ],
+                const SizedBox(height: 24),
+                PasswordField(
+                  controller: _passwordController,
+                ),
+                const SizedBox(height: 16),
+                TextActionButton(
+                  text: 'I forgot my password',
+                  onPressed: _navigateToForgotPassword,
+                ),
+                const Spacer(),
+                Center(
+                  child: TextActionButton(
+                    text: "Don't have account? Let's create!",
+                    onPressed: _navigateToSignup,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                PrimaryButton(
+                  text: 'Next',
+                  onPressed: _handleLogin,
+                  isLoading: _isLoading,
+                ),
+              ],
+            ),
           ),
         ),
       ),
