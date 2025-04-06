@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:routiner/core/theme/app_colors.dart';
 import 'package:routiner/core/widgets/labeled_text_field.dart';
 import 'package:routiner/core/widgets/primary_button.dart';
 import 'package:routiner/core/widgets/text_action_button.dart';
+import 'package:routiner/presentation/pages/create_account/create_account_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class EmailRegisterScreen extends StatefulWidget {
+  const EmailRegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<EmailRegisterScreen> createState() => _EmailRegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _EmailRegisterScreenState extends State<EmailRegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -35,12 +37,20 @@ class _LoginScreenState extends State<LoginScreen> {
         _isLoading = true;
       });
 
-      // Simulate login process
+      // Simulate create_account process
       Future.delayed(const Duration(seconds: 2), () {
         setState(() {
           _isLoading = false;
         });
         // Navigate to next screen
+        if (mounted) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CreateAccountScreen(),
+            ),
+          );
+        }
       });
     }
   }
@@ -56,6 +66,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Continue with email'),
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        foregroundColor: AppColors.textPrimary,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -64,10 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                EmailField(
-                  controller: _emailController,
-                  onClear: _clearEmail
-                ),
+                EmailField(controller: _emailController, onClear: _clearEmail),
                 const SizedBox(height: 24),
                 PasswordField(
                   controller: _passwordController,

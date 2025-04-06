@@ -4,7 +4,7 @@ import 'package:routiner/core/constants/app_strings.dart';
 import 'package:routiner/core/theme/app_theme.dart';
 import 'package:routiner/core/utils/preferences_helper.dart';
 import 'package:routiner/presentation/pages/home/home_screen.dart';
-import 'package:routiner/presentation/pages/login/login_screen.dart';
+import 'package:routiner/presentation/pages/create_account/email_register_screen.dart';
 import 'package:routiner/presentation/pages/onboarding/onboarding_screen.dart';
 
 Future<void> main() async {
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
     if (isFirstLaunch) {
       return const OnboardingScreen();
     } else if (!isLoggedIn) {
-      return const LoginScreen();
+      return const EmailRegisterScreen();
     } else {
       return const HomeScreen();
     }

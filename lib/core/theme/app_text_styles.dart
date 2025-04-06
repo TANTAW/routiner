@@ -40,6 +40,12 @@ class AppTextStyles {
     fontWeight: FontWeight.normal,
     color: AppColors.blue20,
   );
+  static const TextStyle selectableCardBodyMedium = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    color: AppColors.textPrimary,
+  );
   
   static const TextStyle bodySmall = TextStyle(
     fontFamily: fontFamily,
