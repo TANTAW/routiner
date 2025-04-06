@@ -34,4 +34,8 @@ class AppColors {
   static const Color purple = Color(0xFFAB47BC);
   static const Color teal = Color(0xFF26A69A);
   static const Color white = Color(0xFFFFFFFF);
+
+  static const Color orange100 = Color(0xFFFEA800);
+  static const Color orange10 = Color(0xFFFFF3DA);
+  static const Color black60 = Color(0xFF686873);
 }

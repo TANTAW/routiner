@@ -6,6 +6,7 @@ import 'package:routiner/core/utils/preferences_helper.dart';
 import 'package:routiner/presentation/pages/home/home_screen.dart';
 import 'package:routiner/presentation/pages/create_account/email_register_screen.dart';
 import 'package:routiner/presentation/pages/onboarding/onboarding_screen.dart';
+import 'package:routiner/presentation/pages/profile/profile_screen.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: AppStrings.appName,
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.system,
-      home: _getStartScreen(),
+      home: const ProfileScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
