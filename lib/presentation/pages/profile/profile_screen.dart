@@ -8,6 +8,7 @@ import 'package:routiner/core/widgets/tab_selector.dart';
 import 'package:routiner/domain/entities/achievement.dart';
 import 'package:routiner/domain/entities/activity_item.dart';
 import 'package:routiner/domain/entities/friend.dart';
+import 'package:routiner/presentation/pages/settings/settings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -125,7 +126,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _onSettingsTap() {
-    // Navigate to settings screen
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SettingsScreen(),
+      ),
+    );
   }
 
   void _onRemoveFriend(String friendId) {
